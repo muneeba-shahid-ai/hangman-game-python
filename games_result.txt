@@ -8,3 +8,4 @@ muniba-loss-word : homicide
 muniba-loss-word : butcher
 muniba-won-word : homicide
 muniba-won-word : killer
+name-won-word : killer

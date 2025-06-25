@@ -65,9 +65,13 @@ with open(dictionary_path, "r") as d:
         # print(line)
         words = line.strip().split(",")
         for word in words:
-            w = word.split(" : ")
+            if ":" not in word:
+                continue  # 🔁 Skip malformed or empty parts
+            w = word.split(":")
+            if len(w) != 2:
+                continue  # 🔁 Skip malformed entries
             key = w[0].replace('"', '').strip()
-            value = int(w[1]) 
+            value = int(w[1])
             words_dict[key] = value
 name = input("Enter your name : ").strip()
 game_played = False
