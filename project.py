@@ -3,7 +3,7 @@ import os
 
 #fumtion start
 
-def r_key(d):
+def r_key(d, name):
     random_word = random.choice(list(d.keys()))
     # print(random_word)
     # for i in random_word :
@@ -11,6 +11,7 @@ def r_key(d):
     print("_ " * len(random_word))
     chance = 7
     list_of_ltters = []
+    word_completed = False
     while chance > 0:
         letter = input("enter a letter :") 
         if letter.isalpha() == False or len(letter) > 1:
@@ -20,21 +21,20 @@ def r_key(d):
             print("letter already entered")
             continue
         else :
-            find_letter = random_word.find(letter)
-            # print(find_letter)
-            if find_letter >= 0 :
+            if letter in random_word:
                 list_of_ltters.append(letter)
                 word_completed = True
                 for char in random_word:
                     if char in list_of_ltters :
-                        print(char,end=" ")
+                        print(char,end="")
                     else :
                         word_completed = False
                         print("_ ",end="")
                 print()         
                 if word_completed :
-                    print(f'{name}-won-word : {random_word}')
-                    return random_word 
+                    print(f'{name} - won - word : {random_word}')
+                    # return random_word 
+                    break
                 print()    
                 print()                 
             else :
@@ -44,60 +44,49 @@ def r_key(d):
                 print()
                 print("chances left ",chance)
                 if chance == 0:
-                    print(f'{name}-loss-word : {random_word}')
-                    return random_word       
+                    print(f'{name} - loss - word : {random_word}')
+                    # return random_word       
     os.makedirs("D:\\Muniba Work\\Week 2\\Final Project", exist_ok=True)
-    with open("D:\Muniba Work\Week 2\Final Project\games_result.txt","a") as result:
+    with open("D:\Muniba Work\Week 2\Final Project\games_result.txt", "a") as result:
         if word_completed :
             result.write(f'{name}-won-word : {random_word}\n')
         else:
             result.write(f'{name}-loss-word : {random_word}\n')
-            # return random_word
+    return random_word
 
 #function end
-
+# Load dictionary from file
+dictionary_path = "D:\\Muniba Work\\Week 2\\Final Project\\dictionary.txt"
 os.makedirs("D:\\Muniba Work\\Week 2\\Final Project", exist_ok=True)
 words_dict = {}
-with open("D:\\Muniba Work\\Week 2\\Final Project\\dictionary.txt","r") as d:
+with open(dictionary_path, "r") as d:
     for line in d: 
         # print("Dictionary in txt is ")
         # print(line)
-        words = line.split(",")
-        for word in words :
+        words = line.strip().split(",")
+        for word in words:
             w = word.split(" : ")
-            key = w[0].strip('"')
+            key = w[0].replace('"', '').strip()
             value = int(w[1]) 
-            words_dict[key]=value
-name = input("Enter your name : ")
-# for choice in name :    
-choice = ""
-while choice != 'play' and choice != 'exit':   
-    choice = input("choose Play | Exit ")
-    
-    if choice.lower() == 'play':
-        # r_key(words_dict)
-        random_word_was = r_key(words_dict)
-        words_dict[random_word_was] += 1
-        # print("Now dictionary is : ")
-        # print(words_dict)
-        text_dict = ''
-        items = list(words_dict.items())
-        # print(items)
-        for idx,(k,v) in enumerate(items):
-            text_dict += f'"{k}" : '+ str(v) 
-            if idx != len(items) - 1:
-                text_dict += ", "
-                for word in text_dict:
-                    k = k.strip('"')
-        # print(text_dict)
-        choice = "play_again"
-        continue
-    elif choice.lower() == 'exit':
-        os.remove("dictionary.txt")
-        os.makedirs("D:\\Muniba Work\\Week 2\\Final Project", exist_ok=True)
-        with open("D:\\Muniba Work\\Week 2\\Final Project\\dictionary.txt","w") as d:
-            d.write(text_dict)
+            words_dict[key] = value
+name = input("Enter your name : ").strip()
+game_played = False
+# for choice in name :
+while True:    
+    choice = input("Choose Play | Exit: ").lower()
+    if choice == 'play':
+        random_word = r_key(words_dict, name)
+        words_dict[random_word] += 1
+        game_played = True
+    elif choice == 'exit':
+        if game_played:
+            # Save updated dictionary
+            with open(dictionary_path, "w") as d:
+                items = [f'"{k}": {v}' for k, v in words_dict.items()]
+                d.write(", ".join(items))
+            print("Dictionary updated and saved.")
+        else:
+            print("No game played. Exiting without changes.")
         break
-    else :
-        print("No such typo accepted. Please choose again.")
-        continue 
+    else:
+        print("Invalid option. Please type Play or Exit.")

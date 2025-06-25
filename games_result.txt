@@ -1,3 +1,10 @@
 hamza-loss-word :  "massacrer
 muneeba-loss-word :  "butcher
 muniba-loss-word :  "murderer
+munbiba-loss-word :  " "homicide
+muniba-loss-word :  " "assassin
+muniba-loss-word :  " "headsman
+muniba-loss-word : homicide
+muniba-loss-word : butcher
+muniba-won-word : homicide
+muniba-won-word : killer
