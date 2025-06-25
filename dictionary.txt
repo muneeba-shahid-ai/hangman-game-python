@@ -1,0 +1,1 @@
+"executioner" : 0, "headsman" : 0, "murderer" : 0, "executor" : 0, "assassin" : 0, "killer" : 0, "butcher" : 0, "deathsman" : 0, "cutthroat" : 0, "decapitator" : 0, "homicide" : 0, "slayer" : 0, "slaughterer" : 0, "manslayer" : 1, "murderess" : 0, "massacrer" : 0
