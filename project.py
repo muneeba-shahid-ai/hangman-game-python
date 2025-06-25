@@ -45,13 +45,14 @@ def r_key(d):
                 print("chances left ",chance)
                 if chance == 0:
                     print(f'{name}-loss-word : {random_word}')
+                    return random_word       
     os.makedirs("D:\\Muniba Work\\Week 2\\Final Project", exist_ok=True)
     with open("D:\Muniba Work\Week 2\Final Project\games_result.txt","a") as result:
         if word_completed :
             result.write(f'{name}-won-word : {random_word}\n')
         else:
             result.write(f'{name}-loss-word : {random_word}\n')
-            
+            # return random_word
 
 #function end
 
@@ -59,7 +60,7 @@ os.makedirs("D:\\Muniba Work\\Week 2\\Final Project", exist_ok=True)
 words_dict = {}
 with open("D:\\Muniba Work\\Week 2\\Final Project\\dictionary.txt","r") as d:
     for line in d: 
-        print("Dictionary in txt is ")
+        # print("Dictionary in txt is ")
         # print(line)
         words = line.split(",")
         for word in words :

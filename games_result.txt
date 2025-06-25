@@ -1,13 +1,3 @@
-muniba-won-word : killer
-muniba-won-word : executor
-muniba-loss-word : homicide
-muniba-won-word : cutthroat
-muniba-loss-word : assassin
-muniba-loss-word : assassin
-muniba-loss-word : butcher
-muniba-loss-word : headsman
-muniba-loss-word : 'massacrer'
-muniba-loss-word : deathsman
-muniba-loss-word : deathsman
-shifa-loss-word : decapitator
-shifa-loss-word : butcher
+hamza-loss-word :  "massacrer
+muneeba-loss-word :  "butcher
+muniba-loss-word :  "murderer
