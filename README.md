@@ -24,5 +24,5 @@ This project implements a classic Hangman word-guessing game as a Python applica
 1. Download or clone the project:
 
    ```bash
-   git clone https://github.com/yourusername/fyp-hangman.git
-   cd fyp-hangman
+   git clone https://github.com/muneeba-shahid-ai/hangman-game-python.git
+   cd hangman-game-python
